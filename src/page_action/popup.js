@@ -10,19 +10,30 @@ function scrape() {
 function clear() {
   chrome.tabs.executeScript({
     file: 'clear.js'
-  }); 
+	}); 
+	$scope.$digest()
 }
 
 var app = angular.module("leadsApp", []);
 
 app.controller("leadsList", function($scope) {
 
- chrome.storage.local.get ('array', async function  (result) {
-	var leads  = result.array
-	$scope.leads = leads
-	$scope.$digest()
-	console.log($scope.leads)
-});
+	chrome.storage.local.get ('leads', function (result) {
+		var leads  = result.leads
+		$scope.leads = leads
+		
+		$scope.total = result.leads.length;
+		$scope.$digest()
+	});
+
+	chrome.storage.onChanged.addListener(function() {
+		chrome.storage.local.get ('leads', function (result) {
+			var leads  = result.leads
+			$scope.leads = leads
+			$scope.total = result.leads.length;
+			$scope.$digest()
+		});
+	});
 
 });
 

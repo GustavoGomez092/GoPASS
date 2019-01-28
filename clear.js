@@ -3,5 +3,6 @@ chrome.storage.local.clear(function() {
     if (error) {
         console.error(error);
     }
+
     console.log('storage cleared')
 });
