@@ -1,0 +1,37 @@
+<!doctype html>
+<script type="text/javascript" src="../../js/angular/angular.min.js"></script>
+<style type="text/css">
+	#mainPopup {
+		padding: 10px;
+		height: 200px;
+		width: 400px;
+		font-family: Helvetica, Ubuntu, Arial, sans-serif;
+	}
+	h1 {
+		font-size: 2em;
+	}
+</style>
+<div ng-app="leadsApp">
+	<div id="mainPopup">
+		<h1>Scrape my leads!</h1>
+		<button type="button" id="clickme">Start</button>
+		<button type="button" id="clickme2">Clear Storage for a new search</button>
+		<h2>Saved Leads</h2>
+	
+		<div ng-controller="leadsList">
+
+			<div ng-repeat="x in leads">
+				<h3>{{x.Name}}</h3>
+				<ul>
+					<li>URL: <a href='{{x.url}}'>{{x.url}}</a></li>
+					<li>Search Keyword: {{x.keyword}}</li>
+					<li>Page number: {{x.pageNumber}}</li>
+					<li>Rank in page: {{x.pageRank}}</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script type="text/javascript" src="popup.js"></script>

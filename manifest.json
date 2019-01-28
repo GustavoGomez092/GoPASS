@@ -1,0 +1,40 @@
+{
+  "name": "GoPASS",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "This extension was created by Gustavo Gomez",
+  "homepage_url": "https://gustavogomez.ga/",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "page": "src/bg/background.html",
+    "persistent": true
+  },
+  "page_action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "GoPASS",
+    "default_popup": "src/page_action/page_action.html"
+  },
+  "permissions": [
+    "clipboardWrite",
+    "https://www.google.com/search?*",
+    "storage",
+    "activeTab",
+    "tabs"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.google.com/search?*"
+      ],
+      "js": [
+        "src/inject/inject.js"
+      ]
+    }
+  ]
+}
